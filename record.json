@@ -1,0 +1,110 @@
+{
+    "name":"Notebook",
+    "logo":"notebook_256x256.png",
+    "author":"sss-26",
+    "authorSite" : "https://github.com/sss-26",
+    "contributions":[
+        "Hosted by Github",
+        "Website by VueJS"
+    ],
+    "download" : "https://github.com/sss-26/FirstRepo/releases/download/v1.0.0/Notebook.Setup.1.0.0.exe",
+    "items" : [
+        {
+            "title" : "Introduction",
+            "desc" : [
+                "Notebook is a simple desktop application for taking notes.",
+                "It has five type of containers - ",
+                "i) Heading",
+                "ii) List",
+                "iii) Textbox",
+                "iv) Table",
+                "v) Image",
+                "A notebook file ends with .nts file extension.",
+                "Create notebook file only using the Notebook application.",
+                "Platform : Windows(x64)"
+            ],
+            "show" : true,
+            "videos" : [
+                {"caption" : "Create a Note" , "desc" : "Video shows how to create a note file", "source" : "video/Introduction 1.mp4"}
+            ]
+        },
+        {
+            "title" : "Heading",
+            "desc" : [
+                "In this part we will learn how to work with headings.",
+                "We can align heading text into three types - ",
+                "i) Left Align",
+                "ii) Center Align",
+                "iii) Right ALign",
+                "We can also give a border on the bottom of the heading.",
+                "For detailed information refer the below video(s)."
+            ], 
+            "show" : false,
+            "videos" : [
+                {"caption" : "Example", "desc" :"All about headings", "source" : "video/Heading.mp4"}
+            ]
+        },
+        {
+            "title" : "Table",
+            "desc" : [
+                "Here we will learn how tables work.",
+                "Features : ",
+                "] Add Column",
+                "] Add Row",
+                "] Delete Column",
+                "] Delete Row",
+                "The first row of the table will always be in bold because it is treated as column heading."
+            ],
+            "show" : false,
+            "videos" : [
+                {"caption" : "Example", "desc":"Learn about heading in this video", "source" : "video/Table.mp4"}
+            ]
+        },
+        {
+            "title" : "Lists",
+            "desc" : [
+                "Lists makes our work neat.",
+                "Here we have two types of list -",
+                "i) Normal List or Unordered List",
+                "ii) Number List or Ordered List",
+                "We can also make nested lists",
+                "*To make a nested list Right Click over the list item to open the contextmenu."
+            ],
+            "show" : false,
+            "videos" : [
+                {"caption" : "Example", "desc":"Get an in-depth overview on lists", "source" : "video/List.mp4"}
+            ]
+        },
+        {
+            "title" : "Text",
+            "desc" : [
+                "Now we will work with normal text with a little bit of fun.",
+                "A simple text box is provided to write your content.",
+                "Text style is available here such as Bold, Italic, Underline.",
+                "Part of a text can be converted into a Pop-Up text.",
+                "You can style text by selecting the text and clicking the available buttons, or you can use the writing format.",
+                "In writring format you specify the required format and you get the desired result.",
+                "For Bold - use b:`this text will appear in bold in reading mode`",
+                "For Italic - use i:`this text will appear in italic in reading mode`",
+                "For Underline - use u:`this text will appear in underline in reading mode`",
+                "For PopUp - use p:`this text will appear in popup in reading mode`"
+            ],
+            "show" : false,
+            "videos" : [
+                {"caption" : "Example", "desc":"Video example of Textbox", "source" : "video/Text.mp4"}
+            ]
+        },
+        {
+            "title" : "Image",
+            "desc" : [
+                "An image can say a thousand words and we will see how notebook works with them.",
+                "We will learn how images can be intregated into the notebook.",
+                "The view has basic features like - Zoom, Rotate, Move."
+            ],
+            "show" : false,
+            "videos" : [
+                {"caption" : "Example", "desc":"Video example of Imageview", "source" : "video/Image.mp4"}
+            ]
+        }
+    ]
+}

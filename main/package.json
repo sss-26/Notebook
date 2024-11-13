@@ -1,0 +1,45 @@
+{
+  "name": "Notebook",
+  "version": "1.0.0",
+  "description": "A Notebook Application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "electron-builder"
+
+  },
+  "author": "sss-26",
+  "license": "ISC",
+  "build": {
+    "fileAssociations": [
+      {
+        "ext": "nts",
+        "name": "Notebook File",
+        "role": "Editor"
+      }
+    ],
+    "win": {
+      "icon": "icon/notebook_256x256.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+    "oneClick": false,
+    "perMachine":true,
+    "allowElevation": true,
+    "allowToChangeInstallationDirectory": true
+  }
+  },
+  
+  "devDependencies": {
+    "electron": "^32.1.2",
+    "electron-builder": "^25.1.8"
+  }
+}

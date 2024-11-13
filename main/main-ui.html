@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notebook</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="main-ui.css">
+    <link rel="stylesheet" href="cell-intregation.css">
+</head>
+
+<body>
+<!-- Alert -->
+ 
+<!-- Loading -->
+<div class="loading">
+    <h1>Loading...<hr></h1>
+ </div>
+ <!-- Sidenav Contextmenu -->
+ <div class="side-nav-contextmenu">
+    <button onclick="sideNavContextMenuOperation(event)" style="display: block;">Remove</button>
+    <button onclick="sideNavContextMenuOperation(event)" style="display: block;">Rename</button>
+    <button onclick="sideNavContextMenuOperation(event)" style="display: block;">Delete</button>
+ </div>
+<!-- Contextmenu -->
+<div class="contextmenu" style="display: none;" oncontextmenu="contextmenuOperation(event)">
+    <button onclick="addItemContextmenu(event)">Add Item</button>
+    <button onclick="deleteItem(event)">Remove</button>
+    
+    <button disabled style="border-bottom:0 ;">Add List</button>
+    <div >
+        <button onclick="addList(event)" data-type="unordered" title="Add List"><img data-type="unordered" src="icon/list.png"alt="List Image" ></button>
+        <button onclick="addList(event)" data-type="ordered" title="Add Number List"><img data-type="ordered" src="icon/number-list.png"alt="Number List Image" ></button>
+    </div>
+</div>
+<!-- Template -->
+<!-- Main Container -->
+<template id="template-main-container">
+    <div class="main-container">
+        <div class="main-operation">
+            <div style="flex: 5; flex-wrap: wrap;">
+                <button onclick="addCell(event)">Heading</button>
+                <button onclick="addCell(event)">Table</button>
+                <button onclick="addCell(event)">List</button>
+                <button onclick="addCell(event)">N-List</button>
+                <button onclick="addCell(event)">Text</button>
+                <button onclick="addCell(event)">Image</button>
+            </div>
+            <div style="flex: 2; display: flex;justify-content: flex-end;flex-wrap: wrap;">
+                <!-- <button  onclick="setArrange(event)">Arrange</button> -->
+                <button onclick="view(event);saveFile(event);toggle(event)">Save</button>
+            </div>
+        </div>
+        <div class="main-content ">
+        </div>
+    </div>
+</template>
+<!-- Cell -->
+<template id="template-cell-container">
+    <div class="cell-container" ondragover="testDragOver(event)" ondrop="testDrop(event)" ondragstart="testDrag(event)" draggable="flase">
+        <div class="cell-operation">
+            <div style="flex:6; flex-wrap: wrap;">
+                <button onclick="setFontSize(event)">-</button> <input type="number" oninput="setFontSize(event)" value="16" min="5" id="font-size"> <button onclick="setFontSize(event)">+</button>
+            
+                <select name="font" id="font-name" oninput="setFontFamily(event)">
+                    <option value="Arial, Helvetica, sans-serif">Arial</option>
+                    <option value="Georgia, 'Times New Roman', Times, serif">Georgia</option>
+                    <option value="'Times New Roman', Times, serif">Times New Roman</option>
+                    <option value="Verdana, Geneva, Tahoma, sans-serif">Verdana</option>
+                    <option value="cursive">Cursive</option>
+                </select>
+            </div>
+            <div style="flex:4; justify-content: end; flex-wrap: wrap;">
+                <button onclick="moveCell(event)">Up</button>
+                <button onclick="moveCell(event)">Down</button>
+                <button onclick="deleteCell(event)">Delete Cell</button>
+            </div>
+        </div>
+        <div class="cell-content" >
+            
+        </div>
+        <div class="container-operation">
+            <button onclick="containerOperation(event)">Heading</button>
+            <button onclick="containerOperation(event)">Table</button>
+            <button onclick="containerOperation(event)">List</button>
+            <button onclick="containerOperation(event)">N-List</button>
+            <button onclick="containerOperation(event)">Text</button>
+            <button onclick="containerOperation(event)">Image</button>
+        </div>
+    </div>
+    
+    
+</template>
+<!-- Heading -->
+<template id="template-heading-container">
+    <div class="heading-container">
+        <div class="heading-operation">
+            <button onclick="textFormatHeading(event)" title="Left Align">L</button>
+            <button onclick="textFormatHeading(event)" title="Center Align">C</button>
+            <button onclick="textFormatHeading(event)" title="Right Align">R</button>
+            <button onclick="textFormatHeading(event)" title="Highlight">H</button>
+        </div>
+        <h1 class="heading editable"  contenteditable="true">This is a Heading.<hr style="display: block;"></h1>
+        
+    </div>
+</template>
+<!-- List -->
+<template id="template-list-container">
+    <div class="list-container" >
+    <div class="list" contenteditable="true"  oncontextmenu="return false">
+        <p class="item" oncontextmenu="contextmenuOperation(event)" ></p>
+    </div>
+    <div class="list-operation"  contenteditable="false"><button onclick="addItem(event)" contenteditable="false">Add Item</button><button onclick="deleteList(event)" contenteditable="false">Delete List</button> </div>
+    </div>
+</template>
+
+<template id="template-n-list-container">
+    <div class="list-container" >
+    <div class="list-number" contenteditable="true"  oncontextmenu="return false">
+        <p class="item" oncontextmenu="contextmenuOperation(event)" ></p>
+    </div>
+    <div class="list-operation"  contenteditable="false"><button onclick="addItem(event)" contenteditable="false">Add Item</button><button onclick="deleteList(event)" contenteditable="false">Delete List</button> </div>
+    </div>
+</template>
+
+<template id="template-list">
+    <div class="list" contenteditable="true" oncontextmenu="return false" >
+        <p class="item" oncontextmenu="contextmenuOperation(event)"></p>
+    </div>
+    <div class="list-operation"  contenteditable="false"><button onclick="addItem(event)" >Add Item</button><button onclick="deleteList(event)" >Delete List</button></div>
+</template>
+
+<template id="template-list-ordered">
+    <div class="list-number" contenteditable="true" oncontextmenu="return false">
+        <p class="item" oncontextmenu="contextmenuOperation(event)" ></p>
+    </div>
+    <div class="list-operation"  contenteditable="false"><button onclick="addItem(event)" >Add Item</button><button onclick="deleteList(event)" >Delete List</button></div>
+</template>
+<!-- Text -->
+<template id="template-text-container">
+    <div class="text-container">
+        <div class="text-operation">
+            <div style="flex-grow: 4;">
+            <button onclick="textFormatText(event)" title="Italic">I</button>
+            <button onclick="textFormatText(event)" title="Bold">B</button>
+            <button onclick="textFormatText(event)" title="Underline">U</button>
+            <button onclick="textFormatText(event)">Pop Up</button>
+            </div>
+            <div style="justify-content: end;flex-grow:1;">
+                <button onclick="clearText(event)">Clear</button>
+            </div>
+        </div>
+        <textarea class="text-edit"  contenteditable="true" placeholder="write something here" onselect="selectText(event)" onclick="selectText(event);getCaret(event)"></textarea>
+        <p class="text-view"></p>
+    </div>
+</template>
+<!-- Image -->
+<template id="template-image-container">
+    <div class="image-container">
+        <div class="image-control">
+            <div style="flex:8;">
+                <button onclick="showInfo(event)" title="Info"><img src="icon/list.png" alt="">
+                    <table>
+                        <tr><td> Move</td><td>Right Click + Drag</td><tr>
+                        <tr><td>Zoom In</td><td>Right Click</td><tr>
+                        <tr><td>Zoom Out </td><td>Left Click</td><tr>
+                        <tr><td>Rotate Clockwise</td><td> R +</td><tr>
+                        <tr><td>Rotate Anti-Clockwise</td><td> R -</td><tr>
+                    </table>
+                </button>
+                
+                <button onclick="resetImage(event)" title="Reset Image">Reset</button>
+                <button onclick="rotateImage(event)" data-rotate="a" title="Rotate Clockwise">R -</button>
+                <button onclick="rotateImage(event)" data-rotate="c" title="Rotate Anti-Clockwise">R +</button>
+            </div>
+            <div class="image-operation" style="flex:1;justify-content:end;">
+                <button onclick="uploadImage(event)">Upload</button>
+                <input  type="file" id="imageInput" onchange="getImageInput(event)" hidden accept="image/png image/jpeg image/jpg"></input>
+            </div>
+        </div>
+        <div class="image-holder" >
+            <img src="./icon/image.png" class="image" oncontextmenu="return false;" onmousemove="changePosition(event)" onmousedown="mouseHandler(event)"  onmouseup="zoom(event);mouseHandler(event);" draggable="false" alt="image" >
+        </div>
+    </div>
+</template>
+<!-- Table -->
+<template id="template-table-container">
+    <div class="table-container">
+        <table id="table">
+            <tr class="table-row-operation" contenteditable="false">
+                <td><button onclick="deleteColumn(event)" >del</button></td>
+                <td><button onclick="deleteColumn(event)" >del</button></td>
+                <td><button onclick="deleteColumn(event)" >del</button></td>
+                <td class="table-operation" contenteditable="false"><button>X</button></td>
+            </tr>
+            <tr contenteditable="false">
+                <td class="editable" contenteditable="true"></td>
+                <td class="editable" contenteditable="true"></td>
+                <td class="editable" contenteditable="true"></td>
+                <td class="table-operation" contenteditable="false"><button onclick="deleteRow(event)" contenteditable="false">X</button></td>
+            </tr>
+            <tr class="table-row-operation" contenteditable="false"><td colspan="50%"><button onclick="addRow(event)" >add row</button> </td><td colspan="50%"><button onclick="addColumn(event)">add column</button></td></tr>
+        </table>
+    </div>
+</template>
+
+    <div class="main-ui">
+        <div class="side-header">
+            <button class="process" id="newfile" onclick="createFile(event)" title="Create File"></button>
+            <button class="process" id="openfile" onclick="openFile(event)" title="Open File"></button>
+            <button class="process" id="openfolder" onclick="openFolder(event)" title="Open Folder"></button>
+        </div>
+    
+        <div class="side-nav">
+            <!-- <button class="file" data-file="" onclick="showFile(event)" title="">File</button> -->
+            <!-- <details class="folder">
+                <summary title="Folder">Folder</summary>
+                <div>
+                    <button class="file" data-file="" onclick="showFile(event)" title="">File</button>
+                    <button class="file" data-file="" onclick="showFile(event)" title="">File</button>
+                </div>
+            </details> -->
+        </div>
+    
+        <div class="main-view">
+            <div class="main-view-nav">
+                <!-- <div data-id="id1" class="tab active-tab" onclick="showContainer(event)" ondrag="dragTab(event)" ondrop="dropTab(event)" ondragover="allowDrop(event)" draggable="true" title=""><span>File</span><img src="icon/cross.png" onclick="removeContainer(event)" draggable="false"></div> -->
+            </div>
+            <div class="main-view-content">
+                <!-- <div class="frame active-frame" data-id="id1"></div> -->
+            </div>
+        </div>
+    </div>
+<script src="renderer.js"></script>
+<script src="main-ui.js"></script>
+<script src="cell-intregation.js"></script>
+<script>loadingScreen("hide")</script>
+</body>
+</html>
