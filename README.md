@@ -18,7 +18,11 @@ All the source code resides in the `main` folder.
 
 `Clone` this repository > go to `main` > run `npm install`
 
-Modify `package.json` according to your will.
+Modify the project at your will.
+
+## License
+
+For license see the `License` section
 
 ## Attribution
 ICONS
@@ -26,7 +30,3 @@ ICONS
 - <a href="https://www.flaticon.com/free-icons/123" title="123 icons">123 icons created by Icon Mela - Flaticon</a>
 - <a href="https://www.flaticon.com/free-icons/delete" title="delete icons">Delete icons created by Kiranshastry - Flaticon</a>
 - https://fonts.google.com/icons
-
-### Copyright
-
-Copyright @ [sss-26](https://github.com/sss-26)
